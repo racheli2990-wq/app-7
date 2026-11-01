@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
@@ -163,7 +164,7 @@ public class MainActivity extends Activity {
             long base=Math.max(0,ex.getSampleTime());
             mux.start();
             ByteBuffer buf=ByteBuffer.allocate(2*1024*1024);
-            MediaMuxer.BufferInfo info=new MediaMuxer.BufferInfo();int written=0;
+            MediaCodec.BufferInfo info=new MediaCodec.BufferInfo();int written=0;
             while(true){
                 int track=ex.getSampleTrackIndex();if(track<0)break;
                 long time=ex.getSampleTime();if(time>endUs)break;
